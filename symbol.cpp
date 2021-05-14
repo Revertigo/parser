@@ -3,9 +3,9 @@
 //
 #include "strings.h"
 #include "symbol.h"
+
 using namespace std;
 
-Type Symbol::getType(){return type;}
 int Symbol::getSymbol(){return symbol;}
 
 void Word::printSymbol() const {
@@ -15,7 +15,6 @@ void Word::printSymbol() const {
     }
 }
 
-//Non-terminal
 void Variable::printSymbol() const {
     cout << tokenStrings[symbol] << " ";
 }

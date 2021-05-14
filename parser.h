@@ -1,21 +1,25 @@
+#ifndef PARSER_PARSER_H
+#define PARSER_PARSER_H
+
 #include <fstream>
 #include "symbol.h"
 
 using namespace std;
+
 class Parser {
 	ifstream& inputFile;
 	vector<vector<shared_ptr<Symbol>>> rules {
-            { make_shared<Variable>(Variable(E_, NONTERM)), make_shared<Variable>(Variable(T, NONTERM)) },
-            { make_shared<Variable>(Variable(E_, NONTERM)), make_shared<Variable>(Variable(T, NONTERM)),
-                    make_shared<Word>(Word(PLUS, TERM)) },
-            { make_shared<Word>(Word(EPSILON, TERM)) },
-            { make_shared<Variable>(Variable(T_, NONTERM)), make_shared<Variable>(Variable(F, NONTERM)) },
-            { make_shared<Variable>(Variable(T_, NONTERM)), make_shared<Variable>(Variable(F, NONTERM)),
-                    make_shared<Word>(Word(ASTERISK, TERM)) },
-            { make_shared<Word>(Word(EPSILON, TERM))},
-            { make_shared<Word>(Word(RPAREN, TERM)), make_shared<Variable>(Variable(E, NONTERM)),
-                    make_shared<Word>(Word(LPAREN, TERM)) },
-            { make_shared<Word>(Word(ID, TERM)) }
+            { make_shared<Variable>(Variable(E_)), make_shared<Variable>(Variable(T)) },
+            { make_shared<Variable>(Variable(E_)), make_shared<Variable>(Variable(T)),
+                    make_shared<Word>(Word(PLUS)) },
+            { make_shared<Word>(Word(EPSILON)) },
+            { make_shared<Variable>(Variable(T_)), make_shared<Variable>(Variable(F)) },
+            { make_shared<Variable>(Variable(T_)), make_shared<Variable>(Variable(F)),
+                    make_shared<Word>(Word(ASTERISK)) },
+            { make_shared<Word>(Word(EPSILON))},
+            { make_shared<Word>(Word(RPAREN)), make_shared<Variable>(Variable(E)),
+                    make_shared<Word>(Word(LPAREN)) },
+            { make_shared<Word>(Word(ID)) }
     };
 
 	vector<vector<int>> table {
@@ -30,8 +34,10 @@ class Parser {
 	vector<shared_ptr<Symbol>> accepted;
 	
 public:
-	Parser(ifstream& file) : inputFile(file) {}
+	explicit Parser(ifstream& file) : inputFile(file) {}
 	void parse();
 	terminal nextToken ();
 	void printLM();
 };
+
+#endif //PARSER_PARSER_H

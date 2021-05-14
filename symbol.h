@@ -1,5 +1,5 @@
-#ifndef PARSER_SYMBOL_HPP
-#define PARSER_SYMBOL_HPP
+#ifndef PARSER_SYMBOL_H
+#define PARSER_SYMBOL_H
 
 #include <iostream>
 #include <string>
@@ -7,15 +7,11 @@
 #include <memory>
 #include "enums.h"
 
-using namespace std;
-
 class Symbol {
 protected:
     int symbol;
-    Type type; // TERM or NONTERM
 public:
-    Symbol(int s, Type t) : symbol(s), type(t) {}
-    Type getType();
+    Symbol(int s) : symbol(s){}
     int getSymbol();
     virtual void printSymbol() const = 0;
 };
@@ -36,4 +32,4 @@ public:
     using Symbol::Symbol;
 };
 
-#endif //PARSER_SYMBOL_HPP
+#endif //PARSER_SYMBOL_H

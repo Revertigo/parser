@@ -8,15 +8,17 @@
 
 void Parser::parse(){
     //Always insert to the bottom of the stack $
-    stack.push_back(make_shared<Word>(Word(END, TERM)));
+    stack.push_back(make_shared<Word>(Word(END)));
     //Parsing is always starting from the first rule production i.e. non-terminal E. It will be above the $
-    stack.push_back(make_shared<Variable>(Variable(E, NONTERM)));
+    stack.push_back(make_shared<Variable>(Variable(E)));
 
-    shared_ptr<Symbol> x = stack[stack.size()-1]; //Top of the stack
-    terminal a = nextToken();
+    shared_ptr<Symbol> x = stack[stack.size()-1]; //x is the Top of the stack
+    terminal a = nextToken(); //a represents the current token
     printLM();
+
     while(stack.size() > 1){
-        if(x->getType() == TERM && x->getSymbol() == a){
+        //Check if x is instance of Word
+        if(dynamic_cast<Word*>(x.get()) != nullptr && x->getSymbol() == a){
             stack.pop_back();
             a = nextToken();
             //Add the new parsed token to the accepted list
@@ -27,7 +29,7 @@ void Parser::parse(){
             x = stack[stack.size()-1];
             continue;
         }
-        else if(x->getType() == TERM || table[x->getSymbol()][a] == -1){
+        else if(dynamic_cast<Word*>(x.get()) != nullptr || table[x->getSymbol()][a] == -1){
             cout << "syntax error" << endl;
             return;
         }
