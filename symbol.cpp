@@ -5,4 +5,3 @@
 
 Type Symbol::getType(){return type;}
 int Symbol::getSymbol(){return symbol;}
-

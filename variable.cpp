@@ -1,7 +1,7 @@
 //
 // Created by dekel on 5/12/21.
 //
-
+#include <iostream>
 #include "variable.hpp"
 #include "strings.h"
 

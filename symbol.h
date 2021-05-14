@@ -1,13 +1,11 @@
-
 #ifndef PARSER_SYMBOL_HPP
 #define PARSER_SYMBOL_HPP
 
-#include <iostream>
-#include <fstream>
 #include <string>
 #include <vector>
 #include <memory>
 #include "enums.h"
+
 using namespace std;
 
 class Symbol {
