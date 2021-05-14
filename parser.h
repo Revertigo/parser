@@ -1,8 +1,5 @@
-#include <iostream>
 #include <fstream>
 #include "symbol.h"
-#include "variable.hpp"
-#include "word.hpp"
 
 using namespace std;
 class Parser {
