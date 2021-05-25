@@ -8,19 +8,17 @@ using namespace std;
 
 class Parser {
 	ifstream& inputFile;
+
 	vector<vector<shared_ptr<Symbol>>> rules {
-            { make_shared<Variable>(Variable(E_)), make_shared<Variable>(Variable(T)) },
-            { make_shared<Variable>(Variable(E_)), make_shared<Variable>(Variable(T)),
-                    make_shared<Word>(Word(PLUS)) },
-            { make_shared<Word>(Word(EPSILON)) },
-            { make_shared<Variable>(Variable(T_)), make_shared<Variable>(Variable(F)) },
-            { make_shared<Variable>(Variable(T_)), make_shared<Variable>(Variable(F)),
-                    make_shared<Word>(Word(ASTERISK)) },
-            { make_shared<Word>(Word(EPSILON))},
-            { make_shared<Word>(Word(RPAREN)), make_shared<Variable>(Variable(E)),
-                    make_shared<Word>(Word(LPAREN)) },
-            { make_shared<Word>(Word(ID)) }
-    };
+		{ make_shared<Variable>(E_), make_shared<Variable>(T) },
+		{ make_shared<Variable>(E_), make_shared<Variable>(T), make_shared<Word>(PLUS) },
+		{ make_shared<Word>(EPSILON) },
+		{ make_shared<Variable>(T_), make_shared<Variable>(F) },
+		{ make_shared<Variable>(T_), make_shared<Variable>(F), make_shared<Word>(ASTERISK) },
+		{ make_shared<Word>(EPSILON)},
+		{ make_shared<Word>(RPAREN), make_shared<Variable>(E), make_shared<Word>(LPAREN) },
+		{ make_shared<Word>(ID) }
+	};
 
 	vector<vector<int>> table {
 		{ 0, -1, -1, 0, -1, -1 },

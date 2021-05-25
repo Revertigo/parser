@@ -8,9 +8,9 @@
 
 void Parser::parse(){
     //Always insert to the bottom of the stack $
-    stack.push_back(make_shared<Word>(Word(END)));
+    stack.push_back(make_shared<Word>(END));
     //Parsing is always starting from the first rule production i.e. non-terminal E. It will be above the $
-    stack.push_back(make_shared<Variable>(Variable(E)));
+    stack.push_back(make_shared<Variable>(E));
 
     shared_ptr<Symbol> x = stack[stack.size()-1]; //x is the Top of the stack
     terminal a = nextToken(); //a represents the current token
